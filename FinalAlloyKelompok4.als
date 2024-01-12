@@ -25,6 +25,7 @@ listOfProducts: some Product,
 }
 
 sig Cart{
+pembeli: one User,
 listOfProducts: some Product,
 }
 
@@ -81,7 +82,7 @@ fact {
   some l: Login | l.profile in User and l.username != none and l.password != none
   some p: Product | p.id != none and p.namaItem != none and p.harga >= 0
   some o: Order | o.user != none and o.listOfProducts != none
-  some c: Cart | c.listOfProducts != none
+  some c: Cart | c.listOfProducts != none and c.pembeli != none
   some ps: PaymentService | ps.order != none
   some pay: Payment | pay.paymentType != none and pay.amount >= 0 and pay.paymentID != none and pay.service in PaymentService
   some ew: EWallet | ew.PhoneNumber != none and ew.paymentType != none and ew.amount >= 0 and ew.paymentID != none and ew.service in PaymentService
@@ -125,7 +126,7 @@ assert PaymentServiceWithNullOrder {
 
 run {} for 5 but 3 Int, 5 Text, 3 EncryptedText
 //check UserHasUniqueID for 2
-// check LoginHasUniqueUsername for 2
+//check LoginHasUniqueUsername for 2
 //check CartHasUniqueProducts for 2
 //check OrderHasNonEmptyProductList for 2
 //check OrderHasUserAndProducts for 2
