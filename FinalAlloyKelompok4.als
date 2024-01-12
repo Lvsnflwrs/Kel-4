@@ -98,14 +98,8 @@ assert LoginHasUniqueUsername {
 assert OrderHasNonEmptyProductList {
   all o: Order | o.listOfProducts != none
 }
-assert PaymentAmountNonNegative {
-  all pay: Payment | pay.amount >= 0
-}
 assert OrderHasUserAndProducts {
   all o: Order | o.user != none and o.listOfProducts != none
-}
-assert PaymentServiceOrderNotNull {
-  all ps: PaymentService | ps.order != none
 }
 assert PaymentServiceHasOrder {
   all ps: PaymentService | ps.order in Order
@@ -134,13 +128,7 @@ run {} for 5 but 3 Int, 5 Text, 3 EncryptedText
 // check LoginHasUniqueUsername for 2
 //check CartHasUniqueProducts for 2
 //check OrderHasNonEmptyProductList for 2
-//check PaymentAmountNonNegative for 2
 //check OrderHasUserAndProducts for 2
-//check PaymentServiceOrderNotNull for 2
 // check OrderWithoutUser for 2
 // check NegativePaymentAmount for 2
 // check PaymentServiceWithNullOrder for 2
-
-
-
-
