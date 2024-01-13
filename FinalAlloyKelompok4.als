@@ -90,29 +90,11 @@ fact {
   some ls: LoginService | ls.login != none
 }
 
-assert UserHasUniqueID {
-  all disj u1, u2: User | u1.id != u2.id
-}
-assert LoginHasUniqueUsername {
-  all disj l1, l2: Login | l1.username != l2.username
-}
 assert OrderHasNonEmptyProductList {
   all o: Order | o.listOfProducts != none
 }
 assert OrderHasUserAndProducts {
   all o: Order | o.user != none and o.listOfProducts != none
-}
-assert PaymentServiceHasOrder {
-  all ps: PaymentService | ps.order in Order
-}
-assert PaymentHasService {
-  all pay: Payment | pay.service in PaymentService
-}
-assert CreditCardIsPayment {
-  all cc: CreditCard | cc in Payment
-}
-assert EWalletIsPayment {
-  all ew: EWallet | ew in Payment
 }
 assert OrderWithoutUser {
   all o: Order | o.user != none
@@ -124,12 +106,9 @@ assert PaymentServiceWithNullOrder {
   all ps: PaymentService | ps.order != none
 }
 
-run {} for 5 but 3 Int, 5 Text, 3 EncryptedText
-//check UserHasUniqueID for 2
-//check LoginHasUniqueUsername for 2
-//check CartHasUniqueProducts for 2
+//run {} for 5 but 3 Int, 5 Text, 3 EncryptedText
 //check OrderHasNonEmptyProductList for 2
 //check OrderHasUserAndProducts for 2
-// check OrderWithoutUser for 2
-// check NegativePaymentAmount for 2
-// check PaymentServiceWithNullOrder for 2
+//check OrderWithoutUser for 2
+//check NegativePaymentAmount for 2
+//check PaymentServiceWithNullOrder for 2
