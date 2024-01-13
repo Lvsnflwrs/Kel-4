@@ -90,6 +90,9 @@ fact {
   some ls: LoginService | ls.login != none
 }
 
+assert ValidUser {
+  all u1, u2: User | u1 != u2 implies u1.id != u2.id
+}
 assert OrderHasNonEmptyProductList {
   all o: Order | o.listOfProducts != none
 }
@@ -105,6 +108,12 @@ assert NegativePaymentAmount {
 assert PaymentServiceWithNullOrder {
   all ps: PaymentService | ps.order != none
 }
+assert CreditCardIsPayment {
+  all cc: CreditCard | cc in Payment
+}
+assert EWalletIsPayment {
+  all ew: EWallet | ew in Payment
+}
 
 //run {} for 5 but 3 Int, 5 Text, 3 EncryptedText
 //check OrderHasNonEmptyProductList for 2
@@ -112,3 +121,6 @@ assert PaymentServiceWithNullOrder {
 //check OrderWithoutUser for 2
 //check NegativePaymentAmount for 2
 //check PaymentServiceWithNullOrder for 2
+//check CreditCardIsPayment for 2
+//check EWalletIsPayment for 2
+//check ValidUser for 2
